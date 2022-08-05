@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getData, lesComics, listarComicsActionAsincrono, moreComics } from '../../actions/actionComics';
+import { listarComicsActionAsincrono } from '../../actions/actionComics';
 import '../../styles/CardsHome.scss';
 import { useNavigate } from 'react-router-dom';
 import { detallesActionAsincrono } from '../../actions/actionDetails';

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { types } from '../types/types';
 
 const KEY = process.env.REACT_APP_APYKEY;
-const KEY2 = process.env.REACT_APP_APYKEY2;
+// const KEY2 = process.env.REACT_APP_APYKEY2;
 
 const img = (characters) => {
 	const charImage = [];
