@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import '../../styles/Home.scss';
 
 export const Favoritos = () => {

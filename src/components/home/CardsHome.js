@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { detallesActionAsincrono } from '../../actions/actionDetails';
 import Modal from 'react-bootstrap/Modal';
 import SpinnerLoading from '../spinner/SpinnerLoading';
-import { RegistroAsincronoFavoritos } from '../../actions/actionFavoritos';
 
 const CardsHome = ({ InputText }) => {
 	const dispatch = useDispatch();
@@ -15,10 +14,14 @@ const CardsHome = ({ InputText }) => {
 
 	const [show, setShow] = useState(false);
 
+	//MODAL STATUS
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+
+	//OFFSET STATUS
 	const [offset, setoffset] = useState(0);
 
+	//BTN PAGINATION
 	const moreComics = (num) => {
 		setoffset(num + 10);
 		dispatch(listarComicsActionAsincrono(num));
@@ -42,6 +45,7 @@ const CardsHome = ({ InputText }) => {
 		}, 1000);
 	};
 
+	//añadir al local storage el comic fav
 	const addFav = (ComicFav) => {
 		let favoritos = JSON.parse(localStorage.getItem('ComicsFav'));
 		if (favoritos) {
@@ -50,12 +54,15 @@ const CardsHome = ({ InputText }) => {
 		} else {
 			localStorage.setItem('ComicsFav', JSON.stringify([ComicFav]));
 		}
+
+		dispatch(listarComicsActionAsincrono(offset, InputText));
 	};
 
 	const isFav = (id) => {
 		let comics = JSON.parse(localStorage.getItem('ComicsFav'));
-		console.log(comics.includes.id, id);
-		if (id === comics.includes.id) {
+		if (!comics) {
+			return null;
+		} else if (comics.find((comic) => comic.id === id)) {
 			return true;
 		} else {
 			return false;
@@ -121,7 +128,7 @@ const CardsHome = ({ InputText }) => {
 									const { id, images, title } = comic;
 									addFav({ id, images, title });
 								}}>
-								🎇
+								⭐
 							</button>
 						</div>
 					))}
