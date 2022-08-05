@@ -4,5 +4,6 @@ export const types = {
 	registro: 'registro',
 
 	listarComics: 'listarComics',
+	favorito: 'favorito',
 	detalles: 'detalles',
 };

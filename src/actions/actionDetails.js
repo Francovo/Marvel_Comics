@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { types } from '../types/types';
 
+axios.defaults.baseURL = 'https://gateway.marvel.com/v1/public';
 const KEY = process.env.REACT_APP_APYKEY;
 // const KEY2 = process.env.REACT_APP_APYKEY2;
 

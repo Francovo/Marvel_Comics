@@ -32,7 +32,7 @@ const Detalles = () => {
 						{comicDetail[0].characters &&
 							comicDetail[0].characters.map((char, index) => (
 								<div key={index} className="Char">
-									<img src={`${char}.jpg`} alt="" className="charimg" />
+									<img src={`${char.replace('http:', 'https:')}.jpg`} alt="" className="charimg" />
 									<label> {char.name}</label>
 								</div>
 							))}

@@ -1,9 +1,8 @@
 import { types } from '../types/types';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://gateway.marvel.com/v1/public';
 const KEY = process.env.REACT_APP_APYKEY;
-// const KEY2 = process.env.REACT_APP_APYKEY2;
+const KEY2 = process.env.REACT_APP_APYKEY2;
 
 export const getData = async (offset, InputText) => {
 	try {
