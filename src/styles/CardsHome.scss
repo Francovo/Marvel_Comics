@@ -1,0 +1,59 @@
+body {
+	background-color: black;
+}
+
+.Container_CardsComics {
+	display: flex;
+}
+
+.Container_All_Cards {
+	display: flex;
+	justify-content: center;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+}
+
+.ContainerCard {
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: gray;
+	border-color: white;
+	.BtnCard {
+		background: none;
+		cursor: pointer;
+		border: none;
+	}
+	.ImgCard {
+		width: 250px;
+		height: 420px;
+	}
+}
+.ContainerCard:active {
+	background-color: red;
+	padding: 1rem;
+}
+
+.Title {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	width: 200px;
+	flex-wrap: wrap;
+}
+
+.Containerbtn {
+	display: flex;
+	justify-content: center;
+	padding: 1rem;
+	gap: 3rem;
+	.btnMore {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	button {
+		color: black;
+	}
+}
