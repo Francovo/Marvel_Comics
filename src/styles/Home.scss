@@ -1,12 +1,42 @@
+.Container_Search_Comic_login {
+	display: flex;
+	justify-content: center;
+}
+
 .Container_Search_Comic {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: 2rem;
+	width: 100%;
 }
 
 .InputSearch {
 	width: 40%;
 	padding: 10px;
 	border-radius: 10px;
+	color: black;
+}
+.btnSearch {
+	height: 100%;
+	color: black;
+	border-radius: 10px;
+}
+
+.ContainerbtnLogin {
+	display: flex;
+	align-items: center;
+	margin-right: 2rem;
+
+	.btnLogin {
+		border-radius: 10px;
+		padding: 0.5rem 1rem;
+		color: black;
+		background-color: white;
+		text-decoration: none;
+	}
+	:hover {
+		background-color: black;
+		color: white;
+	}
 }

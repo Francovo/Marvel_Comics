@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { detallesActionAsincrono } from '../../actions/actionDetails';
 import Modal from 'react-bootstrap/Modal';
 import SpinnerLoading from '../spinner/SpinnerLoading';
+import { RegistroAsincronoFavoritos } from '../../actions/actionFavoritos';
 
-const CardsHome = () => {
+const CardsHome = ({ InputText }) => {
 	const dispatch = useDispatch();
 	let navigate = useNavigate();
 
@@ -20,20 +21,18 @@ const CardsHome = () => {
 
 	const moreComics = (num) => {
 		setoffset(num + 10);
-		console.log(num);
 		dispatch(listarComicsActionAsincrono(num));
 	};
 	const lesComics = (num) => {
 		setoffset(num - 10);
-		console.log(num);
 		dispatch(listarComicsActionAsincrono(num));
 	};
 
 	useEffect(() => {
-		dispatch(listarComicsActionAsincrono(offset));
+		dispatch(listarComicsActionAsincrono(offset, InputText));
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [offset]);
+	}, [offset, InputText]);
 
 	const handleData = (comic) => {
 		dispatch(detallesActionAsincrono(comic));
@@ -43,8 +42,27 @@ const CardsHome = () => {
 		}, 1000);
 	};
 
+	const addFav = (ComicFav) => {
+		let favoritos = JSON.parse(localStorage.getItem('ComicsFav'));
+		if (favoritos) {
+			favoritos.push(ComicFav);
+			localStorage.setItem('ComicsFav', JSON.stringify(favoritos));
+		} else {
+			localStorage.setItem('ComicsFav', JSON.stringify([ComicFav]));
+		}
+	};
+
+	const isFav = (id) => {
+		let comics = JSON.parse(localStorage.getItem('ComicsFav'));
+		console.log(comics.includes.id, id);
+		if (id === comics.includes.id) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	const { comics } = useSelector((store) => store.comics);
-	console.log(comics);
 	return (
 		<>
 			<Modal show={show} onHide={handleClose}>
@@ -52,21 +70,26 @@ const CardsHome = () => {
 					<SpinnerLoading />
 				</Modal.Body>
 			</Modal>
-			<div className="Containerbtn">
-				<div className="btnMore">
+			<div className="ContainerbtnMore_leff">
+				{offset > 0 && (
+					<div className="Containerbtns">
+						<button
+							className="btn"
+							onClick={() => {
+								lesComics(offset);
+							}}>
+							⏪ LESS
+						</button>
+					</div>
+				)}
+
+				<div className="Containerbtns">
 					<button
-						onClick={() => {
-							lesComics(offset);
-						}}>
-						Less
-					</button>
-				</div>
-				<div className="btnMore">
-					<button
+						className="btn"
 						onClick={() => {
 							moreComics(offset);
 						}}>
-						More
+						NEXT ⏩
 					</button>
 				</div>
 			</div>
@@ -92,6 +115,14 @@ const CardsHome = () => {
 								</button>
 							)}
 							<div className="Title">{comic.title}</div>
+							<button
+								className={`btnFav ${isFav(comic.id) ? 'btn_active' : ''}`}
+								onClick={() => {
+									const { id, images, title } = comic;
+									addFav({ id, images, title });
+								}}>
+								🎇
+							</button>
 						</div>
 					))}
 			</div>

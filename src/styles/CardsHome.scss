@@ -30,7 +30,7 @@ body {
 		height: 420px;
 	}
 }
-.ContainerCard:active {
+.BtnCard:active {
 	background-color: red;
 	padding: 1rem;
 }
@@ -43,17 +43,23 @@ body {
 	flex-wrap: wrap;
 }
 
-.Containerbtn {
+.ContainerbtnMore_leff {
 	display: flex;
 	justify-content: center;
 	padding: 1rem;
 	gap: 3rem;
-	.btnMore {
+	.Containerbtns {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
-	button {
+	.btn {
 		color: black;
+		background-color: white;
+		width: 100px;
 	}
+}
+
+.btn_active {
+	background-color: blue;
 }
