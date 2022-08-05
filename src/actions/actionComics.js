@@ -8,10 +8,10 @@ const KEY2 = process.env.REACT_APP_APYKEY2;
 export const getData = async (offset, InputText) => {
 	try {
 		if (InputText.length > 1) {
-			const data2 = await axios.get(`/comics?ts=1&limit=10&offset=${offset}&titleStartsWith=${InputText}${KEY2}`);
+			const data2 = await axios.get(`/comics?ts=1&limit=10&offset=${offset}&titleStartsWith=${InputText}${KEY}`);
 			return data2;
 		} else {
-			const data = await axios.get(`/comics?ts=1&limit=10&offset=${offset}${KEY2}`);
+			const data = await axios.get(`/comics?ts=1&limit=10&offset=${offset}${KEY}`);
 			console.log(data.data.data.results);
 			return data;
 		}
