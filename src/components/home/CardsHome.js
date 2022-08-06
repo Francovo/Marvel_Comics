@@ -70,7 +70,7 @@ const CardsHome = ({ InputText }) => {
 	};
 
 	const { comics } = useSelector((store) => store.comics);
-	return (
+	return comics.length ? (
 		<>
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Body>
@@ -134,6 +134,10 @@ const CardsHome = ({ InputText }) => {
 					))}
 			</div>
 		</>
+	) : (
+		<div className="Container_All_Cards">
+			<img src="https://www.iamrap.es/media/iamrap/images/2017/11/13/xv-8211-marvel-404.jpg" alt="" />
+		</div>
 	);
 };
 
