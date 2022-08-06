@@ -5,29 +5,33 @@ axios.defaults.baseURL = 'https://gateway.marvel.com/v1/public';
 const KEY = process.env.REACT_APP_APYKEY;
 // const KEY2 = process.env.REACT_APP_APYKEY2;
 
-const img = (characters) => {
-	const charImage = [];
-	characters.map(async (char) => {
+const img = async (characters) => {
+	console.log(characters);
+	if (!characters.length) {
+		return [];
+	}
+	const promise = characters.map(async (char) => {
 		const data = await axios.get(`${char.resourceURI}?ts=1${KEY}`);
 		const urlimg = data.data.data.results[0].thumbnail.path;
-		charImage.push(urlimg);
+		return urlimg;
 	});
-	return charImage;
+	const charDetails = await Promise.all(promise);
+	return charDetails;
 };
 
-const DataDetail = (comic) => {
+const DataDetail = async (comic) => {
 	const detailcomic = {
 		img: `${comic.images[0]?.path}.${comic.images[0]?.extension}`,
 		characters: comic.characters.items,
 		details: comic.description,
 	};
-	detailcomic.characters = img(detailcomic.characters);
+	detailcomic.characters = await img(detailcomic.characters);
 	return detailcomic;
 };
 
 export const detallesActionAsincrono = (comic) => {
-	return (dispatch) => {
-		const data = DataDetail(comic);
+	return async (dispatch) => {
+		const data = await DataDetail(comic);
 		dispatch(detallesActionSincrono(data));
 	};
 };
