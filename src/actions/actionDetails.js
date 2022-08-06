@@ -11,9 +11,10 @@ const img = async (characters) => {
 		return [];
 	}
 	const promise = characters.map(async (char) => {
-		const data = await axios.get(`${char.resourceURI}?ts=1${KEY}`);
+		console.log(char);
+		const data = await axios.get(`${char.resourceURI.replace('http', 'https')}?ts=1${KEY}`);
 		const urlimg = data.data.data.results[0].thumbnail.path;
-		return urlimg;
+		return urlimg.replace('http', 'https');
 	});
 	const charDetails = await Promise.all(promise);
 	return charDetails;

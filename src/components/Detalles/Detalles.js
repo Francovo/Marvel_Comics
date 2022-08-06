@@ -6,8 +6,6 @@ import '../../styles/Detalles.scss';
 const Detalles = () => {
 	const { comicDetail } = useSelector((store) => store.details);
 
-	console.log('urlImage', comicDetail[0]);
-
 	let navigate = useNavigate();
 	return (
 		<>
@@ -32,7 +30,7 @@ const Detalles = () => {
 						{comicDetail[0].characters &&
 							comicDetail[0].characters.map((char, index) => (
 								<div key={index} className="Char">
-									<img src={`${char.replace('http:', 'https:')}.jpg`} alt="" className="charimg" />
+									<img src={`${char}.jpg`} alt="" className="charimg" />
 									<label> {char.name}</label>
 								</div>
 							))}
