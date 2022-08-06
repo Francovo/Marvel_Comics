@@ -32,6 +32,9 @@ export const Home = ({ logged }) => {
 					</button>
 				</div>
 				<div className="ContainerbtnLogin">
+					<Link to="/favoritos" style={{ marginRight: '1rem' }}>
+						⭐
+					</Link>
 					{logged ? (
 						<Link
 							to="/login"
