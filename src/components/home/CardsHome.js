@@ -70,7 +70,8 @@ const CardsHome = ({ InputText }) => {
 	};
 
 	const { comics } = useSelector((store) => store.comics);
-	return comics.length ? (
+
+	return comics && comics.length ? (
 		<>
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Body>
