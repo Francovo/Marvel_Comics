@@ -11,6 +11,8 @@ body {
 	justify-content: center;
 	gap: 1.5rem;
 	flex-wrap: wrap;
+	height: 100%;
+	padding: 0 0 3rem 0;
 }
 
 .ContainerCard {
@@ -20,6 +22,8 @@ body {
 	align-items: center;
 	background-color: gray;
 	border-color: white;
+	height: 510px;
+	border-radius: 10px;
 	.BtnCard {
 		background: none;
 		cursor: pointer;
@@ -28,6 +32,7 @@ body {
 	.ImgCard {
 		width: 250px;
 		height: 420px;
+		border-radius: 10px;
 	}
 }
 .BtnCard:active {
