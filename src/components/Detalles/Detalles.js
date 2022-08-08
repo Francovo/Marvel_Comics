@@ -1,12 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { listarComicsActionAsincrono } from '../../actions/actionComics';
 import '../../styles/Detalles.scss';
 
-const Detalles = () => {
+const Detalles = (offset) => {
 	const { comicDetail } = useSelector((store) => store.details);
 	console.log('ComicDetail', comicDetail[0]);
 	let navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const BackHome = (offset) => {
+		dispatch(listarComicsActionAsincrono(offset));
+	};
+
 	return (
 		<>
 			<div className="ContainerDetails">
@@ -14,6 +21,7 @@ const Detalles = () => {
 					className="BtnBack"
 					onClick={() => {
 						navigate('/');
+						BackHome(offset);
 					}}>
 					⇍
 				</button>

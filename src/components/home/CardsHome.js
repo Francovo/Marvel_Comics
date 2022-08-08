@@ -26,11 +26,19 @@ const CardsHome = ({ InputText }) => {
 	//BTN PAGINATION
 	const moreComics = (num) => {
 		setoffset(num + 10);
-		dispatch(listarComicsActionAsincrono(num));
+		handleShow();
+		setTimeout(() => {
+			dispatch(listarComicsActionAsincrono(num));
+			setShow(false);
+		}, 1000);
 	};
 	const lesComics = (num) => {
 		setoffset(num - 10);
-		dispatch(listarComicsActionAsincrono(num));
+		handleShow();
+		setTimeout(() => {
+			dispatch(listarComicsActionAsincrono(num));
+			setShow(false);
+		}, 1000);
 	};
 
 	useEffect(() => {
@@ -102,7 +110,7 @@ const CardsHome = ({ InputText }) => {
 			<div className="Container_All_Cards">
 				{comics.length !== 0 &&
 					comics.map((comic, index) => (
-						<div to="/Detalles" key={index} className="ContainerCard">
+						<div key={index} className="ContainerCard">
 							{comic.images.length > 0 ? (
 								<button
 									className="BtnCard"
