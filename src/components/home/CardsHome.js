@@ -12,9 +12,11 @@ const CardsHome = ({ InputText }) => {
 	const dispatch = useDispatch();
 	let navigate = useNavigate();
 
-	const [show, setShow] = useState(false);
+	//Set Data LocalStorage
+	const [comicFavorite, setcomicFavorite] = useState(JSON.parse(window.localStorage.getItem('ComicsFav')) || []);
 
 	//MODAL STATUS
+	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
@@ -49,24 +51,20 @@ const CardsHome = ({ InputText }) => {
 	const addFav = (ComicFav) => {
 		let favoritos = JSON.parse(localStorage.getItem('ComicsFav'));
 		if (favoritos) {
+			const itemFound = favoritos.find((item) => item.id === ComicFav.id);
+			if (itemFound) {
+				localStorage.setItem('ComicsFav', JSON.stringify(favoritos.filter((item) => item.id !== ComicFav.id)));
+				setcomicFavorite([...comicFavorite.filter((id) => id !== ComicFav.id)]);
+				return;
+			}
 			favoritos.push(ComicFav);
+			setcomicFavorite([...comicFavorite, ComicFav.id]);
 			localStorage.setItem('ComicsFav', JSON.stringify(favoritos));
-		} else {
-			localStorage.setItem('ComicsFav', JSON.stringify([ComicFav]));
+			return;
 		}
 
-		dispatch(listarComicsActionAsincrono(offset, InputText));
-	};
-
-	const isFav = (id) => {
-		let comics = JSON.parse(localStorage.getItem('ComicsFav'));
-		if (!comics) {
-			return null;
-		} else if (comics.find((comic) => comic.id === id)) {
-			return true;
-		} else {
-			return false;
-		}
+		setcomicFavorite([...comicFavorite, ComicFav.id]);
+		localStorage.setItem('ComicsFav', JSON.stringify([ComicFav]));
 	};
 
 	const { comics } = useSelector((store) => store.comics);
@@ -124,7 +122,7 @@ const CardsHome = ({ InputText }) => {
 							)}
 							<div className="Title">{comic.title}</div>
 							<button
-								className={`btnFav ${isFav(comic.id) ? 'btn_active' : ''}`}
+								className={` ${comicFavorite.includes(comic.id) ? 'btn_active' : 'btnFav'}`}
 								onClick={() => {
 									const { id, images, title } = comic;
 									addFav({ id, images, title });
