@@ -6,12 +6,10 @@ const KEY = process.env.REACT_APP_APYKEY;
 // const KEY2 = process.env.REACT_APP_APYKEY2;
 
 const img = async (characters) => {
-	console.log(characters);
 	if (!characters.length) {
 		return [];
 	}
 	const promise = characters.map(async (char) => {
-		console.log(char);
 		const data = await axios.get(`${char.resourceURI.replace('http', 'https')}?ts=1${KEY}`);
 		const urlimg = data.data.data.results[0].thumbnail.path;
 		return urlimg.replace('http', 'https');

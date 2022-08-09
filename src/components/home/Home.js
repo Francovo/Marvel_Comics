@@ -12,7 +12,6 @@ export const Home = ({ logged }) => {
 	const dispatch = useDispatch();
 
 	const handleInputChange = () => {
-		console.log(inputRef.current.value);
 		setInputText(inputRef.current.value);
 	};
 

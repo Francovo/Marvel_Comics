@@ -11,7 +11,6 @@ export const getData = async (offset, InputText) => {
 			return data2;
 		} else {
 			const data = await axios.get(`/comics?ts=1&limit=10&offset=${offset}${KEY}`);
-			console.log(data.data.data.results);
 			return data;
 		}
 	} catch (error) {
@@ -22,7 +21,6 @@ export const getData = async (offset, InputText) => {
 export const listarComicsActionAsincrono = (offset, InputText) => {
 	return async (dispatch) => {
 		const data = await getData(offset, InputText);
-		//console.log(data);
 		dispatch(listarComicsActionSincrono(data.data.data.results));
 	};
 };

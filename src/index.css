@@ -13,7 +13,7 @@ code {
 }
 
 html {
-	background-color: black;
+	background-color: #3b3939;
 }
 body::-webkit-scrollbar-thumb {
 	background-color: #dd0e0e;

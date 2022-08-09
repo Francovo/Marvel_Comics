@@ -25,7 +25,7 @@ function Login() {
 		navigate('/');
 	} else {
 		return (
-			<div class="row p-5">
+			<div class="p-5" style={{ height: '100vh' }}>
 				<div
 					id="login"
 					class="col-lg-4 offset-lg-4 col-md-6 offset-md-3

@@ -6,7 +6,6 @@ import '../../styles/Detalles.scss';
 
 const Detalles = (offset) => {
 	const { comicDetail } = useSelector((store) => store.details);
-	console.log('ComicDetail', comicDetail[0]);
 	let navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -25,7 +24,7 @@ const Detalles = (offset) => {
 					}}>
 					⇍
 				</button>
-				<img src={comicDetail[0]?.img} alt="" />
+				<img className="imageDetail" src={comicDetail[0]?.img} alt="" />
 				<div className="ContainerDetailChar">
 					{comicDetail[0]?.details?.length > 0 ? (
 						<>

@@ -40,3 +40,12 @@
 		color: white;
 	}
 }
+
+@media (max-width: 500px) {
+	.Container_Search_Comic {
+		padding: 2rem 0;
+	}
+	.InputSearch {
+		width: 60%;
+	}
+}

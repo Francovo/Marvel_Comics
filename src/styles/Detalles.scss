@@ -51,3 +51,18 @@
 		}
 	}
 }
+
+@media (max-width: 500px) {
+	.ContainerDetails {
+		display: flex;
+		flex-direction: column;
+		padding: 2rem 2rem;
+	}
+	.ComicDetails {
+		justify-content: center;
+		margin-top: 1rem;
+	}
+	.imageDetail {
+		height: 420px;
+	}
+}
