@@ -4,6 +4,9 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+::-webkit-scrollbar {
+	width: 10px;
+}
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
@@ -11,4 +14,8 @@ code {
 
 html {
 	background-color: black;
+}
+body::-webkit-scrollbar-thumb {
+	background-color: #dd0e0e;
+	border-radius: 10px;
 }
